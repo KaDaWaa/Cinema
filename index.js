@@ -6,24 +6,24 @@ import tasks from './controller/tasks.js';
 
 dotenv.config();
 
-const app=express();
+const app = express();
 
 app.set('view engine', 'ejs');
-app.set('views','views');
-app.use(express.urlencoded({extended:false}));
+app.set('views', 'views');
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static('public'));
 
-app.use('/',actions);
-app.use('/functions',tasks);
+app.use('/', actions);
+app.use('/functions', tasks);
 
 database
-.sync()
-.then(results=>{
-    app.listen(process.env.PORT,()=>{
-        console.log(`Server is running on port: ${process.env.PORT}`);
+    .sync()
+    .then(results => {
+        app.listen(process.env.PORT, () => {
+            console.log(`Server is running on port: ${process.env.PORT}`);
+        })
     })
-})
-.catch(err=>{
-    console.log(err);
-})
+    .catch(err => {
+        console.log(err);
+    })
