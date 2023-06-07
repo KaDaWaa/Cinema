@@ -20,4 +20,19 @@ router.get('/homepage',async(req,res)=>{
       })
     })
 
+router.get('/dashboard',async(req,res)=>{
+  Movie.findAll()
+  .then(movies=>{
+    res.render('dashboard',{
+      pageTitle:'Dashboard',
+      movies:movies
+    })
+  })
+  .catch(error=>{
+    res.render('homepage',{
+      pageTitle:'TCinemaB',
+    })
+  })
+})
+
 export default router;
