@@ -9,6 +9,7 @@ const Movie=database.define('movie',{
         primaryKey:true
     },
     movieName: Sequelize.STRING,
+    movieImage:Sequelize.STRING,
     movieLength: Sequelize.INTEGER,
     movieAuthor: Sequelize.STRING,
     ageRestricion: Sequelize.INTEGER,

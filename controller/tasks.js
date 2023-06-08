@@ -8,6 +8,7 @@ router.post('/add_movie',async(req,res)=>{
     Movie.create({
         id:id,
         movieName:movieName,
+        movieImage:movieImage,
         movieLength:movieLength,
         movieAuthor:movieAuthor,
         ageRestricion:ageRestricion,
