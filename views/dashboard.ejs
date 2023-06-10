@@ -14,9 +14,11 @@
                     <label class="form-label">Movie Image</label>
                     <input type="text" name="movieImage" class="form-control">
                     <label class="form-label">Movie Length</label>
-                    <input type="text" name="movieLegth" class="form-control">
+                    <input type="text" name="movieLength" class="form-control">
+                    <label class="form-label">Description</label>
+                    <input type="text" name="movieDescription" class="form-control">
                     <label class="form-label">Movie Author</label>
-                    <input type="text" name="MovieAuthor" class="form-control">
+                    <input type="text" name="movieAuthor" class="form-control">
                     <label class="form-label">Age Restriction</label>
                     <div style="margin-top: 10px; margin-bottom:10px;" class="btn-group" role="group" aria-label="Basic radio toggle button group">
                         <input type="radio" class="btn-check" name="ageR" value="true" id="btnradio1" autocomplete="off">
@@ -28,6 +30,8 @@
                     <input type="text" name="ageRestriction" value="0" class="form-control" id="ageResInput" hidden="">
                     <label class="form-label">Genre</label>
                     <input type="text" name="genre" class="form-control">
+                    <label class="form-label">Amount of chairs</label>
+                    <input type="text" name="chairAmount" class="form-control">
                         <button form="add_movie_form" type="submit" class="btn btn-primary" style="width:100%; margin-top:12px;">Add Movie</button>
                     
                 </form>
@@ -45,6 +49,7 @@
                                 <th>Movie Author</th>
                                 <th>Age Restriction</th>
                                 <th>Genre</th>
+                                <th>Amount of Chairs</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -54,12 +59,13 @@
                                     <td class="align-middle"><h5><%=movie.id%></h5></td>
                                     <td class="align-middle"><h5><%=movie.movieName%></h5></td>
                                     <td ><img src="<%=movie.movieImage%>" style="width:50px; height:auto;"/></td>
-                                    <td class="align-middle"><h5><%=movie.movieLength%></h5></td>
+                                    <td class="align-middle"><h5><%=movie.movieLength%> Minutes</h5></td>
                                     <td class="align-middle"><h5><%=movie.movieAuthor%></h5></td>
-                                    <td class="align-middle"><h5><%=movie.ageRestriction%></h5></td>
+                                    <td class="align-middle"><h5 style="margin-left: 10px;"><%=movie.ageRestriction%></h5></td>
                                     <td class="align-middle"><h5><%=movie.genre%></h5></td>
+                                    <td class="align-middle"><h5><%=movie.chairAmount%></h5></td>
                                     <td class="align-middle"><a class="btn btn-info" style="margin-bottom:10px;" >Products</a>
-                                    <form method="post" action="/functions/delete_category/<%=movie.id%>"><button type="submit" class="btn btn-danger">Delete</button></form></td>
+                                    <form method="post" action="/functions/delete_movie/<%=movie.id%>"><button type="submit" class="btn btn-danger">Delete</button></form></td>
                                 </tr>
                             <%}%>
                         </tbody>

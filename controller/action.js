@@ -1,6 +1,5 @@
 import express from 'express';
 import Movie from '../models/movie.js';
-import Chair from '../models/chair.js';
 import { where } from 'sequelize';
 import dotenv from 'dotenv';
 dotenv.config();
