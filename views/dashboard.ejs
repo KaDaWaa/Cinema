@@ -18,6 +18,8 @@
                             <input type="text" name="movieDescription" class="form-control">
                             <label class="form-label">Movie Author</label>
                             <input type="text" name="movieAuthor" class="form-control">
+                            <label class="form-label">Movie Price</label>
+                            <input type="text" name="moviePrice" class="form-control">
                             <label class="form-label">Age Restriction</label>
                             <div style="margin-top: 10px; margin-bottom:10px;" class="btn-group" role="group"
                                 aria-label="Basic radio toggle button group">
@@ -51,6 +53,7 @@
                                         <th>Movie Length</th>
                                         <th>Movie Description</th>
                                         <th>Movie Author</th>
+                                        <th>Movie Price</th>
                                         <th>Age Restriction</th>
                                         <th>Genre</th>
                                         <th>Amount of Chairs</th>
@@ -85,6 +88,11 @@
                                             <td class="align-middle">
                                                 <h5>
                                                     <%=movie.movieAuthor%>
+                                                </h5>
+                                            </td>
+                                            <td class="align-middle">
+                                                <h5>
+                                                    <%=movie.moviePrice%>$
                                                 </h5>
                                             </td>
                                             <td class="align-middle">

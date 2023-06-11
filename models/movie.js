@@ -13,6 +13,7 @@ const Movie = database.define('movie', {
   movieLength: Sequelize.INTEGER,
   movieDescription: Sequelize.TEXT,
   movieAuthor: Sequelize.STRING,
+  moviePrice: Sequelize.DOUBLE,
   ageRestriction: Sequelize.INTEGER,
   genre: Sequelize.STRING,
   chairAmount: Sequelize.INTEGER,

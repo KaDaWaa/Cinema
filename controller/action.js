@@ -70,6 +70,23 @@ router.get('/movie/:id', async (req, res) => {
     })
 })
 
+router.get('/movie/:id/checkout/:tickets', async (req, res) => {
+  const id = req.params.id;
+
+  Movie.findByPk(id)
+    .then(movie => {
+      res.render('checkout', {
+        pageTitle: "checkout for "+movie.movieName,
+        movie: movie,
+        tickets: req.params.tickets
+      })
+    })
+    .catch(error => {
+      res.render('homepage', {
+        pageTitle: 'TCinemaB'
+      })
+    })
+})
 router.get('/edit_movie/:id', async (req, res) => {
   const id = req.params.id;
 

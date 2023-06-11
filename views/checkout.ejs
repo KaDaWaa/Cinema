@@ -40,8 +40,10 @@
                                     <%=movie.movieDescription%>
                             </div>
                         </div>
-                        <% let selectedChairAmount=0; %>
                         <% let chairArray=movie.chairArray %>
+                            <% console.log(chairArray) %>
+                                <% console.log(chairArray[3]) %>
+
                                     <div class="tickets-purchase">
                                         <div class="seats-container">
                                             <div class="screen">
@@ -56,7 +58,6 @@
                                                             id="image<%=i%>" src="/pics/SeatAvailable.png"
                                                             alt="greenChair(Available)"
                                                             style="height: 40px; width: 40px;"></button>
-                                                            <%selectedChairAmount++;%>
                                                     <% }else{ %>
                                                         <img id="<%=i%>" src="/pics/SeatUnavailable.png"
                                                             alt="grayChair(not Available)"
@@ -68,7 +69,7 @@
                                             <div class="purchase-btn">
                                                 <span style="font-size: larger; margin-left:25%;">Purchase</span><br>
                                                 <span style="font-size: 0.7em; margin-left:25%;">
-                                                    <%=selectedChairAmount%> Chairs selected
+                                                    <%#selectedChairAmount%> Chairs selected
                                                 </span>
                                             </div>
                                     </div>
