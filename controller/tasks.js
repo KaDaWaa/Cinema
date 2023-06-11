@@ -88,6 +88,31 @@ router.post('/edit_chairs/:id', async (req, res) => {
       console.log(error);
       res.redirect('/homepage')
     })
-
 })
-export default router;
+
+
+router.post('/add_movie', async (req, res) => {
+    const { id, movieName,movieImage, movieLength,movieDescription, movieAuthor, ageRestriction, genre, chairAmount } = req.body;
+    
+    const chairArray = Array.from({ length: chairAmount }, () => false);
+    
+    Movie.create({
+      id: id,
+      movieName: movieName,
+      movieImage: movieImage,
+      movieLength: movieLength,
+      movieDescription:movieDescription,
+      movieAuthor: movieAuthor,
+      ageRestriction: ageRestriction,
+      genre: genre,
+      chairAmount: chairAmount,
+      chairArray: chairArray
+    }).then(result => {
+      res.redirect(`/dashboard?username=rany&password=segev`);
+    }).catch(error => {
+      console.log(error);
+      res.redirect('/homepage');
+    });
+  });
+  
+  export default router;

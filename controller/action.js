@@ -44,13 +44,33 @@ router.get('/dashboard', async (req, res) => {
         res.render('dashboard', {
           pageTitle: 'Dashboard',
           movies: movies
-        });
+        })
       })
-  } else
-    res.redirect('/homepage');
+      .catch(error => {
+        res.render('homepage', {
+          pageTitle: 'TCinemaB',
+        })
+      })
+  }
+})
+router.get('/movie/:id', async (req, res) => {
+  const id = req.params.id;
+
+  Movie.findByPk(id)
+    .then(movie => {
+      res.render('movie', {
+        pageTitle: movie.movieName,
+        movie: movie
+      })
+    })
+    .catch(error => {
+      res.render('homepage', {
+        pageTitle: 'TCinemaB'
+      })
+    })
 })
 
-router.get('/edit_movie/:id', async (req, res) => {
+router.get('/edit_edit_movie/:id', async (req, res) => {
   const id = req.params.id;
 
   Movie.findByPk(id)
