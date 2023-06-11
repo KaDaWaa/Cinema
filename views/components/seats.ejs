@@ -1,39 +1,27 @@
-<style>
-    .cinema {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-
-    }
-
-    .occupied {
-        background-color: red;
-    }
-
-    .image {
-        width: 50px;
-        height: 50px;
-    }
-</style>
-
+<link rel="stylesheet" href="/movie.css">
 <h1>Cinema Seat Selection</h1>
-
-<div class="cinema">
-    <div>
-        <% for (let i=0; i < movie.chairArray.length; i++) { %>
-            <% if (movie.chairArray[i]) { %>
-                <button id="<%=i%>" onclick="change(this)">
-                    <img class="image" id="image<%=i%>" src="/pics/SeatUnavailable.png" alt="Button Image">
-                </button>
-                <% } else { %>
-                    <button id="<%=i%>" onclick="change(this)">
-                        <img class="image" id="image<%=i%>" src="/pics/SeatAvailable.png" alt="Button Image">
+<div class="seats-container">
+    <div class="screen">
+        <img src="/pics/screenCinema.png" alt="screen" style="width: 600px;">
+    </div>
+    <div class="seats-container">
+        <div class="seats"
+            style="display: flex; flex-wrap: wrap;justify-content: center; align-items: center; width: 80%; margin-top: 50px; margin-left: 55px;">
+            <% for(let i=0; i < movie.chairAmount ; i++) { if(movie.chairArray[i]){%>
+                <button id="<%=i%>" onclick="change(this)" style="background: none; border: none; padding: 0;"><img
+                        src="/pics/SeatUnavailable.png" id="image<%=i%>" alt="greenChair(Available)"
+                        style="height: 40px; width: 40px;"></button>
+                <% }else{ %>
+                    <button id="<%=i%>" onclick="change(this)" style="background: none; border: none; padding: 0;">
+                        <img class="image" id="image<%=i%>" src="/pics/SeatAvailable.png" alt="Button Image"
+                            style="height: 40px; width: 40px;">
                     </button>
-                    <% } %>
-                        <% } %>
+                    <% }} %>
+        </div>
     </div>
 </div>
-<button type="submit" class="btn btn-primary" style="width:100%; margin-top:12px;" onclick="sendData()">Save
+<button type="submit" class="btn btn-primary" style="width:100%; margin-left: 4%; margin-top: 20%;"
+    onclick="sendData()">Save
     Changes</button>
 <script>
     var test = '<%- JSON.parse(JSON.stringify(movie.chairArray)) %>';
@@ -53,7 +41,6 @@
             editedChairs.push(button.id);
         }
     }
-
     async function sendData() {
         const response = await fetch('/functions/edit_chairs/' + '<%- JSON.stringify(movie.id)%>', {
             method: "POST",

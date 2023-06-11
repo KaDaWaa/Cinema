@@ -32,15 +32,16 @@
                             id="ageResInput" <% if(!movie.ageRestriction){%>hidden=""<%}%>>
                             <label class="form-label">Genre</label>
                             <input type="text" name="genre" class="form-control" value="<%=movie.genre%>">
+                            <label class="form-label">Amount of Chairs</label>
+                            <input type="text" name="chairAmount" class="form-control" value="<%=movie.chairAmount%>">
                             <button form="edit_movie_form" type="submit" class="btn btn-primary"
                                 style="width:100%; margin-top:12px;">Save
                                 Changes</button>
 
                     </form>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-6" style="width: 30%; margin-left: 200px">
                     <%- include('./components/seats') %>
-
                 </div>
 
 

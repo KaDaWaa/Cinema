@@ -74,14 +74,11 @@ router.post('/edit_chairs/:id', async (req, res) => {
   const editedChairs = req.body;
   const movie = await Movie.findByPk(id);
   const tempChairs = movie.chairArray;
-  console.log(editedChairs);
   for (let i = 0; i < movie.chairAmount; i++) {
     if (editedChairs.includes(String(i))) {
-      console.log(i + "in" + editedChairs);
       tempChairs[i] = (!tempChairs[i]);
     }
   }
-  console.log(tempChairs);
   Movie.update({
     chairArray: tempChairs
   }, { where: { id: id } }).then(result => {
