@@ -13,24 +13,45 @@ router.post("/login", async (req, res) => {
         res.redirect("/loginpage?message=Wrong email or password!")
 
 });
-router.post('/add_movie',async(req,res)=>{
-    const{id,movieName,movieLength,movieAuthor,ageRestricion,genre,chairAmount}=req.body;
+router.post('/add_movie', async (req, res) => {
+    const { id, movieName, movieImage, movieLength, movieAuthor, ageRestricion, genre, chairAmount } = req.body;
     Movie.create({
-        id:id,
-        movieName:movieName,
-        movieImage:movieImage,
-        movieLength:movieLength,
-        movieAuthor:movieAuthor,
-        ageRestricion:ageRestricion,
-        genre:genre,
-        chairAmount:chairAmount
-    }).then(result=>{
+        id: id,
+        movieName: movieName,
+        movieImage: movieImage,
+        movieLength: movieLength,
+        movieAuthor: movieAuthor,
+        ageRestricion: ageRestricion,
+        genre: genre,
+        chairAmount: chairAmount
+    }).then(result => {
         res.redirect('/dashboard')
     })
-    .catch(error=>{
-        console.log(error);
-        res.redirect('/homepage')
+        .catch(error => {
+            console.log(error);
+            res.redirect('/homepage')
+        })
+
+})
+
+router.post('/edit_movie/:id', async (req, res) => {
+    const id = req.params.id;
+    const { movieName, movieImage, movieLength, movieAuthor, ageRestricion, genre, chairAmount } = req.body;
+    Movie.update({
+        movieName: movieName,
+        movieImage: movieImage,
+        movieLength: movieLength,
+        movieAuthor: movieAuthor,
+        ageRestricion: ageRestricion,
+        genre: genre,
+        chairAmount: chairAmount
+    }, { where: { id: id } }).then(result => {
+        res.redirect('/dashboard')
     })
+        .catch(error => {
+            console.log(error);
+            res.redirect('/homepage')
+        })
 
 })
 export default router;
