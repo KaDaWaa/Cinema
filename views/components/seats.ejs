@@ -3,10 +3,16 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
+
     }
 
     .occupied {
         background-color: red;
+    }
+
+    .image {
+        width: 50px;
+        height: 50px;
     }
 </style>
 
@@ -17,11 +23,11 @@
         <% for (let i=0; i < movie.chairArray.length; i++) { %>
             <% if (movie.chairArray[i]) { %>
                 <button id="<%=i%>" onclick="change(this)">
-                    <img id="image<%=i%>" src="/pics/SeatUnavailable.png" alt="Button Image">
+                    <img class="image" id="image<%=i%>" src="/pics/SeatUnavailable.png" alt="Button Image">
                 </button>
                 <% } else { %>
                     <button id="<%=i%>" onclick="change(this)">
-                        <img id="image<%=i%>" src="/pics/SeatAvailable.png" alt="Button Image">
+                        <img class="image" id="image<%=i%>" src="/pics/SeatAvailable.png" alt="Button Image">
                     </button>
                     <% } %>
                         <% } %>
@@ -49,7 +55,6 @@
     }
 
     async function sendData() {
-        alert(editedChairs);
         const response = await fetch('/functions/edit_chairs/' + '<%- JSON.stringify(movie.id)%>', {
             method: "POST",
             body: JSON.stringify(editedChairs),
