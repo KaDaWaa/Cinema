@@ -1,0 +1,56 @@
+.movie-details {
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.movie-details h1 {
+
+    margin-bottom: 25px;
+    font-size: 50px;
+    color: #e72241;
+}
+
+.movie-details p {
+    margin: 5px 0;
+    font-size: 16px;
+    color:#1d1d48;
+}
+
+.movie-description {
+    height: calc(100% - 140px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    font-size: 18px;
+    color:#1d1d48;
+}
+
+
+.poster{
+    border-color: #1d1d48;
+    border-style: solid;
+    border-radius: 5px;
+    border-width: 4px;
+    height: 500px;
+    width: auto;
+}
+
+.seats-container{
+    width:600px;
+    height: 400px;
+    background-color: #1d1d48;
+}
+.tickets-purchase{
+    margin-top: 100px;
+    margin-left: 200px; 
+}
+
+.purchase-btn{
+margin-left: 220px;
+background-color: #e72241;
+width:150px;
+height:60px;
+overflow: hidden;
+}
