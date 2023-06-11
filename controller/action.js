@@ -1,6 +1,5 @@
 import express from 'express';
 import Movie from '../models/movie.js';
-import Chair from '../models/chair.js';
 import { where } from 'sequelize';
 import dotenv from 'dotenv';
 dotenv.config();
@@ -46,6 +45,11 @@ router.get('/dashboard', async (req, res) => {
           pageTitle: 'Dashboard',
           movies: movies
         });
+      })
+      .catch(error => {
+        res.render('homepage', {
+          pageTitle: 'TCinemaB',
+        })
       })
   } else
     res.redirect('/homepage');

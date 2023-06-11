@@ -1,0 +1,120 @@
+/* flipcard.css */
+
+/* Rest of the styles */
+
+.flip-card {
+    position: relative;
+    width: 250px;
+    height: 380px;
+    perspective: 1000px;
+    margin-bottom: 20px;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+}
+
+.flip-card-front {
+    background-color: #f2f2f2;
+    color: #000;
+}
+
+.flip-card-front img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.movie-name {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    background-color: rgba(17, 0, 58, 0.8);
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.flip-card-back {
+    background-color: #cae8fb;
+    color: #1d1d49;
+    transform: rotateY(180deg);
+    padding: 20px;
+    font-size: 16px;
+    text-align: left;
+}
+
+.movie-details {
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+.movie-details h2 {
+    margin-bottom: 10px;
+    font-size: 24px;
+    color: #1d1d49;
+}
+
+.movie-details p {
+    margin: 5px 0;
+}
+
+.movie-description {
+    height: calc(100% - 140px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    font-size: 18px;
+    color: #1d1d49;
+}
+
+.movie-details span {
+    font-size: 12px;
+    color: #1d1d49;
+}
+
+.btn-container {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    text-align: center;
+}
+
+.btn {
+    align-self: center;
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 0 5px;
+    background-color: #4CAF50;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #45a049;
+}
