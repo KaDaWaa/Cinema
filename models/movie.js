@@ -11,7 +11,7 @@ const Movie = database.define('movie', {
   movieName: Sequelize.STRING,
   movieImage: Sequelize.STRING,
   movieLength: Sequelize.INTEGER,
-  movieDescription:Sequelize.TEXT,
+  movieDescription: Sequelize.TEXT,
   movieAuthor: Sequelize.STRING,
   ageRestriction: Sequelize.INTEGER,
   genre: Sequelize.STRING,

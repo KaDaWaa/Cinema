@@ -50,17 +50,42 @@ router.post('/add_movie', async (req, res) => {
 
 router.post('/edit_movie/:id', async (req, res) => {
   const id = req.params.id;
-  const { movieName, movieImage, movieLength, movieAuthor, ageRestricion, genre, chairAmount } = req.body;
+  const { movieName, movieImage, movieLength, movieAuthor, ageRestriction, genre, chairAmount } = req.body;
   Movie.update({
     movieName: movieName,
     movieImage: movieImage,
     movieLength: movieLength,
     movieAuthor: movieAuthor,
-    ageRestricion: ageRestricion,
+    ageRestriction: ageRestriction,
     genre: genre,
     chairAmount: chairAmount
   }, { where: { id: id } }).then(result => {
-    res.redirect('/dashboard')
+    res.redirect(`/dashboard?username=rany&password=segev`);
+  })
+    .catch(error => {
+      console.log(error);
+      res.redirect('/homepage')
+    })
+
+})
+
+router.post('/edit_chairs/:id', async (req, res) => {
+  const id = req.params.id;
+  const editedChairs = req.body;
+  const movie = await Movie.findByPk(id);
+  const tempChairs = movie.chairArray;
+  console.log(editedChairs);
+  for (let i = 0; i < movie.chairAmount; i++) {
+    if (editedChairs.includes(String(i))) {
+      console.log(i + "in" + editedChairs);
+      tempChairs[i] = (!tempChairs[i]);
+    }
+  }
+  console.log(tempChairs);
+  Movie.update({
+    chairArray: tempChairs
+  }, { where: { id: id } }).then(result => {
+    res.redirect(`/dashboard?username=rany&password=segev`);
   })
     .catch(error => {
       console.log(error);

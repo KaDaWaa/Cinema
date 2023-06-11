@@ -35,21 +35,6 @@ router.get('/loginpage', async (req, res) => {
   }
 })
 
-// router.get('/dashboard', async (req, res) => {
-//   const username = req.query.username;
-//   const password = req.query.password;
-//   if (username == process.env.ADMIN_USERNAME && password == process.env.ADMIN_PASSWORD) {
-//     Movie.findAll()
-//       .then(movies => {
-//         res.render('dashboard', {
-//           pageTitle: 'Dashboard',
-//           movies: movies
-//         });
-//       })
-//   } else
-//     res.redirect('/homepage');
-// })
-
 router.get('/dashboard', async (req, res) => {
   const username = req.query.username;
   const password = req.query.password;
@@ -59,17 +44,13 @@ router.get('/dashboard', async (req, res) => {
         res.render('dashboard', {
           pageTitle: 'Dashboard',
           movies: movies
-        })
+        });
       })
-      .catch(error => {
-        res.render('homepage', {
-          pageTitle: 'TCinemaB',
-        })
-      })
-  }
+  } else
+    res.redirect('/homepage');
 })
 
-router.get('/movie/:id', async (req, res) => {
+router.get('/edit_movie/:id', async (req, res) => {
   const id = req.params.id;
 
   Movie.findByPk(id)
