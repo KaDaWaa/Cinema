@@ -33,7 +33,22 @@ router.get('/loginpage', async (req, res) => {
       pageTitle: 'TCinemaB',
     });
   }
-});
+})
+
+// router.get('/dashboard', async (req, res) => {
+//   const username = req.query.username;
+//   const password = req.query.password;
+//   if (username == process.env.ADMIN_USERNAME && password == process.env.ADMIN_PASSWORD) {
+//     Movie.findAll()
+//       .then(movies => {
+//         res.render('dashboard', {
+//           pageTitle: 'Dashboard',
+//           movies: movies
+//         });
+//       })
+//   } else
+//     res.redirect('/homepage');
+// })
 
 router.get('/dashboard', async (req, res) => {
   const username = req.query.username;
@@ -54,19 +69,21 @@ router.get('/dashboard', async (req, res) => {
 }
 })
 
-// router.get('/dashboard',async(req,res)=>{
-//   Movie.findAll()
-//   .then(movies=>{
-//     res.render('dashboard',{
-//       pageTitle:'Dashboard',
-//       movies:movies
-//     })
-//   })
-//   .catch(error=>{
-//     res.render('homepage',{
-//       pageTitle:'TCinemaB',
-//     })
-//   })
-// })
+router.get('/movie/:id', async (req, res) => {
+  const id = req.params.id;
 
+  Movie.findByPk(id)
+    .then(movie => {
+      res.render('movieEdit', {
+        pageTitle: 'Edit ' + movie.movieName,
+        movie: movie
+      })
+    })
+    .catch(error => {
+      res.render('dashboard', {
+        pageTitle: 'Welocme to Admin',
+      })
+    })
+
+})
 export default router;
