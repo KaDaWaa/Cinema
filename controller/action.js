@@ -70,7 +70,7 @@ router.get('/movie/:id', async (req, res) => {
     })
 })
 
-router.get('/edit_edit_movie/:id', async (req, res) => {
+router.get('/edit_movie/:id', async (req, res) => {
   const id = req.params.id;
 
   Movie.findByPk(id)
