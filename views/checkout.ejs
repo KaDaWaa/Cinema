@@ -67,9 +67,9 @@
                                         </div>
                                         <h4 style="margin-left: 220px;">price:15$(per ticket)</h6>
                                             <div class="purchase-btn">
-                                                <span style="font-size: larger; margin-left:25%;">Purchase</span><br>
+                                                <span style="font-size: larger; margin-left:25%;"><%=selectedChairs%></span><br>
                                                 <span style="font-size: 0.7em; margin-left:25%;">
-                                                    <%#selectedChairAmount%> Chairs selected
+                                                    <%=selectedChairs%>
                                                 </span>
                                             </div>
                                     </div>
@@ -86,13 +86,6 @@
                 </script>
             <script>
                 function SelectSeat(id) {
-                    let seat = document.getElementById("image" + id);
-                    console.log(seat.src)
-                    if (seat.getAttribute('src') === '/pics/SeatAvailable.png')
-                        seat.src = '/pics/SeatSelected.png';
-                    else
-                        seat.src = '/pics/SeatAvailable.png';
-
                 }
             </script>
     </body>

@@ -40,7 +40,7 @@
                                     <%=movie.movieDescription%>
                             </div>
                         </div>
-                        <% let selectedChairAmount=0; %>
+                        <% let selectedChairs=[]; %>
                         <% let chairArray=movie.chairArray %>
                                     <div class="tickets-purchase">
                                         <div class="seats-container">
@@ -56,7 +56,6 @@
                                                             id="image<%=i%>" src="/pics/SeatAvailable.png"
                                                             alt="greenChair(Available)"
                                                             style="height: 40px; width: 40px;"></button>
-                                                            <%selectedChairAmount++;%>
                                                     <% }else{ %>
                                                         <img id="<%=i%>" src="/pics/SeatUnavailable.png"
                                                             alt="grayChair(not Available)"
@@ -65,12 +64,11 @@
                                             </div>
                                         </div>
                                         <h4 style="margin-left: 220px;">price:15$(per ticket)</h6>
-                                            <div class="purchase-btn">
+                                            <a id="continue" class="purchase-btn" href="">
                                                 <span style="font-size: larger; margin-left:25%;">Purchase</span><br>
-                                                <span style="font-size: 0.7em; margin-left:25%;">
-                                                    <%=selectedChairAmount%> Chairs selected
-                                                </span>
-                                            </div>
+                                                <span id="amount"font-size: 0.7em; margin-left:25%;"></span>
+                                                <a href="" style="height: max-content; width: max-content;" ></a>
+                                            </a>
                                     </div>
                     </div>
 
@@ -84,14 +82,19 @@
                 crossorigin="anonymous">
                 </script>
             <script>
+                let selectedChairs=[];
                 function SelectSeat(id) {
                     let seat = document.getElementById("image" + id);
-                    console.log(seat.src)
-                    if (seat.getAttribute('src') === '/pics/SeatAvailable.png')
+                    if (seat.getAttribute('src') === '/pics/SeatAvailable.png'){
                         seat.src = '/pics/SeatSelected.png';
-                    else
+                        selectedChairs.push(id);
+                    }
+                    else{
                         seat.src = '/pics/SeatAvailable.png';
-
+                        selectedChairs.splice(selectedChairs.indexOf(id), 1);
+                    }
+                    document.getElementById("amount").innerHTML=selectedChairs.length+" Chairs Selected";
+                    document.getElementById("continue").href='/movie/'+'<%- JSON.stringify(movie.id)%>'+'/checkout/'+selectedChairs.toString();
                 }
             </script>
     </body>

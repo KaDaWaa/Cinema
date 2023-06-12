@@ -53,6 +53,7 @@ router.get('/dashboard', async (req, res) => {
       })
   }
 })
+
 router.get('/movie/:id', async (req, res) => {
   const id = req.params.id;
 
@@ -72,13 +73,14 @@ router.get('/movie/:id', async (req, res) => {
 
 router.get('/movie/:id/checkout/:tickets', async (req, res) => {
   const id = req.params.id;
-
+  const selectedChairs = req.params.tickets.split(',');
+  console.log(selectedChairs);
   Movie.findByPk(id)
     .then(movie => {
       res.render('checkout', {
         pageTitle: "checkout for "+movie.movieName,
         movie: movie,
-        tickets: req.params.tickets
+        selectedChairs: selectedChairs
       })
     })
     .catch(error => {
