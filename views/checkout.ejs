@@ -1,93 +1,267 @@
 <%- include('./components/header')%>
+<head>
 
-    <body style="background-color: #cae8fb;">
-        <%- include('./components/navigation')%>
-            <link rel="stylesheet" href="/movie.css">
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Email Confirmation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style type="text/css">
+  /**
+   * Google webfonts. Recommended to include the .woff version for cross-client compatibility.
+   */
+  @media screen {
+    @font-face {
+      font-family: 'Source Sans Pro';
+      font-style: normal;
+      font-weight: 400;
+      src: local('Source Sans Pro Regular'), local('SourceSansPro-Regular'), url(https://fonts.gstatic.com/s/sourcesanspro/v10/ODelI1aHBYDBqgeIAH2zlBM0YzuT7MdOe03otPbuUS0.woff) format('woff');
+    }
 
+    @font-face {
+      font-family: 'Source Sans Pro';
+      font-style: normal;
+      font-weight: 700;
+      src: local('Source Sans Pro Bold'), local('SourceSansPro-Bold'), url(https://fonts.gstatic.com/s/sourcesanspro/v10/toadOcfmlt9b38dHJxOBGFkQc6VGVFSmCnC_l7QZG60.woff) format('woff');
+    }
+  }
 
-            <div class="container-fluid" style="margin-top: 50px;">
-                <div class="row">
-                    <div class="col-lg-3" style="margin-left: 30px;">
-                        <img class="poster" src="<%= movie.movieImage %>" alt="movie poster">
-                        <div class="movie-details">
-                            <p><strong>Genre:</strong>
-                                <%= movie.genre %>
-                            </p>
-                            <p><strong>Length:</strong>
-                                <%= movie.movieLength %> minutes
-                            </p>
-                            <p><strong>Author:</strong>
-                                <%= movie.movieAuthor %>
-                            </p>
-                            <p><strong>Price:</strong> <%= movie.moviePrice %>$(per ticket)</p>
-                            <p>
-                                <% if (movie.ageRestriction===0) { %>
-                                    No age restriction
-                                    <% } else { %>
-                                        <strong>Age Restriction: </strong>
-                                        <%= movie.ageRestriction %>+
-                                            <% } %>
-                            </p>
-                        </div>
+  /**
+   * Avoid browser level font resizing.
+   * 1. Windows Mobile
+   * 2. iOS / OSX
+   */
+  body,
+  table,
+  td,
+  a {
+    -ms-text-size-adjust: 100%; /* 1 */
+    -webkit-text-size-adjust: 100%; /* 2 */
+  }
+
+  /**
+   * Remove extra space added to tables and cells in Outlook.
+   */
+  table,
+  td {
+    mso-table-rspace: 0pt;
+    mso-table-lspace: 0pt;
+  }
+
+  /**
+   * Better fluid images in Internet Explorer.
+   */
+  img {
+    -ms-interpolation-mode: bicubic;
+  }
+
+  /**
+   * Remove blue links for iOS devices.
+   */
+  a[x-apple-data-detectors] {
+    font-family: inherit !important;
+    font-size: inherit !important;
+    font-weight: inherit !important;
+    line-height: inherit !important;
+    color: inherit !important;
+    text-decoration: none !important;
+  }
+
+  /**
+   * Fix centering issues in Android 4.4.
+   */
+  div[style*="margin: 16px 0;"] {
+    margin: 0 !important;
+  }
+
+  body {
+    width: 100% !important;
+    height: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /**
+   * Collapse table borders to avoid space between cells.
+   */
+  table {
+    border-collapse: collapse !important;
+  }
+
+  a {
+    color: #1a82e2;
+  }
+
+  img {
+    height: auto;
+    line-height: 100%;
+    text-decoration: none;
+    border: 0;
+    outline: none;
+  }
+  </style>
+
+</head>
+<body style="background-color: #e9ecef;">
+    <%- include('./components/navigation')%>
+    <link rel="stylesheet" href="/movie.css">
+
+  <!-- start preheader -->
+  <div class="preheader" style="display: none; max-width: 0; max-height: 0; overflow: hidden; font-size: 1px; line-height: 1px; color: #fff; opacity: 0;">
+    A preheader is the short summary text that follows the subject line when an email is viewed in the inbox.
+  </div>
+  <!-- end preheader -->
+
+  <!-- start body -->
+  <table border="0" cellpadding="0" cellspacing="0" width="100%">
+
+    <!-- start logo -->
+    <tr>
+      <td align="center" bgcolor="#e9ecef">
+        <!--[if (gte mso 9)|(IE)]>
+        <table align="center" border="0" cellpadding="0" cellspacing="0" width="600">
+        <tr>
+        <td align="center" valign="top" width="600">
+        <![endif]-->
+        <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
+          <tr>
+            <td align="center" valign="top" style="padding: 36px 24px;">
+                <div class="seats-container">
+                    <div class="screen">
+                        <img src="/pics/screenCinema.png" alt="screen" style="width: 600px;">
                     </div>
-                    <div class="col-lg-8">
-                        <div class="movie-details">
-                            <h1>
-                                <%= movie.movieName %>
-                            </h1>
-                            <div class="movie-description">
-                                <h5>Movie Description</h2>
-                                    <%=movie.movieDescription%>
-                            </div>
-                        </div>
-                        <% let chairArray=movie.chairArray %>
-                            <% console.log(chairArray) %>
-                                <% console.log(chairArray[3]) %>
-
-                                    <div class="tickets-purchase">
-                                        <div class="seats-container">
-                                            <div class="screen">
-                                                <img src="/pics/screenCinema.png" alt="screen" style="width: 600px;">
-                                            </div>
-                                            <div class="seats"
-                                                style="display: flex; flex-wrap: wrap;justify-content: center; align-items: center; width: 80%; margin-top: 50px; margin-left: 55px;">
-                                                <% for(let i=0; i < movie.chairAmount ; i++) {
-                                                    if(movie.chairArray[i]==false){%>
-                                                    <button onclick="SelectSeat(this.id)" id="<%=i%>"
-                                                        style="background: none; border: none; padding: 0;"><img
-                                                            id="image<%=i%>" src="/pics/SeatAvailable.png"
-                                                            alt="greenChair(Available)"
-                                                            style="height: 40px; width: 40px;"></button>
-                                                    <% }else{ %>
-                                                        <img id="<%=i%>" src="/pics/SeatUnavailable.png"
-                                                            alt="grayChair(not Available)"
-                                                            style="height: 40px; width: 40px;">
-                                                        <% }} %>
-                                            </div>
-                                        </div>
-                                        <h4 style="margin-left: 220px;">price:15$(per ticket)</h6>
-                                            <div class="purchase-btn">
-                                                <span style="font-size: larger; margin-left:25%;"><%=selectedChairs%></span><br>
-                                                <span style="font-size: 0.7em; margin-left:25%;">
-                                                    <%=selectedChairs%>
-                                                </span>
-                                            </div>
-                                    </div>
+                    <div class="seats"
+                        style="display: flex; flex-wrap: wrap;justify-content: center; align-items: center; width: 80%; margin-top: 50px; margin-left: 55px;">
+                        <% for(let i=0; i < movie.chairAmount ; i++) {
+                            if(selectedChairs.includes(i.toString())){%>
+                                <img id="<%=i%>" src="/pics/SeatSelected.png"
+                                    alt="grayChair(not Available)"
+                                    style="height: 40px; width: 40px;">
+                            <%}
+                            else if(movie.chairArray[i]==false){%>
+                                <img id="<%=i%>" src="/pics/SeatAvailable.png"
+                                    alt="grayChair(not Available)"
+                                    style="height: 40px; width: 40px;">
+                            <% }else{ %>
+                                <img id="<%=i%>" src="/pics/SeatUnavailable.png"
+                                    alt="grayChair(not Available)"
+                                    style="height: 40px; width: 40px;">
+                                <% }} %>
                     </div>
-
                 </div>
-            </div>
+            </td>
+          </tr>
+        </table>
+        <!--[if (gte mso 9)|(IE)]>
+        </td>
+        </tr>
+        </table>
+        <![endif]-->
+      </td>
+    </tr>
+    <!-- end logo -->
 
+    <!-- start hero -->
+    <tr>
+      <td align="center" bgcolor="#e9ecef">
+        <!--[if (gte mso 9)|(IE)]>
+        <table align="center" border="0" cellpadding="0" cellspacing="0" width="600">
+        <tr>
+        <td align="center" valign="top" width="600">
+        <![endif]-->
+        <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
+          <tr>
+            <td align="left" bgcolor="#ffffff" style="padding: 36px 24px 0; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; border-top: 3px solid #d4dadf;">
+              <h1 style="margin: 0; font-size: 32px; font-weight: 700; letter-spacing: -1px; line-height: 48px;">Confirm Your Order</h1>
+            </td>
+          </tr>
+        </table>
+        <!--[if (gte mso 9)|(IE)]>
+        </td>
+        </tr>
+        </table>
+        <![endif]-->
+      </td>
+    </tr>
+    <!-- end hero -->
 
+    <!-- start copy block -->
+    <tr>
+      <td align="center" bgcolor="#e9ecef">
+        <!--[if (gte mso 9)|(IE)]>
+        <table align="center" border="0" cellpadding="0" cellspacing="0" width="600">
+        <tr>
+        <td align="center" valign="top" width="600">
+        <![endif]-->
+        <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
 
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-                integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
-                crossorigin="anonymous">
-                </script>
-            <script>
-                function SelectSeat(id) {
-                }
-            </script>
-    </body>
+          <!-- start copy -->
+          <tr>
+            <td align="left" bgcolor="#ffffff" style="padding: 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px;">
+              <p style="margin: 0;">Total Seats: <%=selectedChairs.length%></p>
+              <p style="margin: 0;">Seat Numbers: <%=selectedChairs%></p>
+              <p style="margin: 0;">Price per Seat: <%=movie.moviePrice%>$</p>
+              <p style="margin: 0;">Total Price: <%=(movie.moviePrice*selectedChairs.length).toFixed(2)%>$</p>
+            </td>
+          </tr>
+          <tr>
+            <td align="left" bgcolor="#ffffff">
+              <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                <tr>
+                  <td align="center" bgcolor="#ffffff" style="padding: 12px;">
+                    <table border="0" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td align="center" bgcolor="#1a82e2" style="border-radius: 6px;">
+                          <a onclick="sendData()" href="/homepage" style="display: inline-block; padding: 16px 36px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; color: #ffffff; text-decoration: none; border-radius: 6px;">Confirm Order</a>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+        <!--[if (gte mso 9)|(IE)]>
+        </td>
+        </tr>
+        </table>
+        <![endif]-->
+      </td>
+    </tr>
+    <!-- end copy block -->
 
-    </html>
+    <!-- start footer -->
+    <tr>
+      <td align="center" bgcolor="#e9ecef" style="padding: 24px;">
+        <!--[if (gte mso 9)|(IE)]>
+        <table align="center" border="0" cellpadding="0" cellspacing="0" width="600">
+        <tr>
+        <td align="center" valign="top" width="600">
+        <![endif]-->
+        
+        <![endif]-->
+      </td>
+    </tr>
+    <!-- end footer -->
+
+  </table>
+  <!-- end body -->
+  <script>
+    var selectedChairs = '<%- JSON.parse(JSON.stringify(selectedChairs)) %>';
+    selectedChairs = selectedChairs.split(",");
+    async function sendData() {
+        const response = await fetch('/functions/edit_chairs/' + '<%- JSON.stringify(movie.id)%>', {
+            method: "POST",
+            body: JSON.stringify(selectedChairs),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+        return response.json();
+    }
+    
+    
+    
+    </script>
+</body>
+</html>
