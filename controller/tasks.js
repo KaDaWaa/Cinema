@@ -17,7 +17,7 @@ router.post('/delete_movie/:id', async (req, res) => {
   const id = req.params.id;
   Movie.destroy({ where: { id: id } })
     .then(result => {
-      res.redirect(`/dashboard?username=rany&password=segev`);
+      res.redirect(`/dashboard?username=${process.env.ADMIN_USERNAME}&password=${process.env.ADMIN_PASSWORD}`);
     }).catch(error => {
       console.log(error);
       res.redirect('/homepage');
@@ -42,7 +42,7 @@ router.post('/add_movie', async (req, res) => {
     chairAmount: chairAmount,
     chairArray: chairArray
   }).then(result => {
-    res.redirect(`/dashboard?username=rany&password=segev`);
+    res.redirect(`/dashboard?username=${process.env.ADMIN_USERNAME}&password=${process.env.ADMIN_PASSWORD}`);
   }).catch(error => {
     console.log(error);
     res.redirect('/homepage');
@@ -62,7 +62,7 @@ router.post('/edit_movie/:id', async (req, res) => {
     genre: genre,
     chairAmount: chairAmount
   }, { where: { id: id } }).then(result => {
-    res.redirect(`/dashboard?username=rany&password=segev`);
+    res.redirect(`/dashboard?username=${process.env.ADMIN_USERNAME}&password=${process.env.ADMIN_PASSWORD}`);
   })
     .catch(error => {
       console.log(error);
@@ -84,7 +84,7 @@ router.post('/edit_chairs/:id', async (req, res) => {
   Movie.update({
     chairArray: tempChairs
   }, { where: { id: id } }).then(result => {
-    res.redirect(`/dashboard?username=rany&password=segev`);
+    res.redirect(`/dashboard?username=${process.env.ADMIN_USERNAME}&password=${process.env.ADMIN_PASSWORD}`);
   })
     .catch(error => {
       console.log(error);
