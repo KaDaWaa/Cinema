@@ -81,6 +81,7 @@ router.get('/movie/:id/checkout/:tickets', async (req, res) => {
         tickets: req.params.tickets
       })
     })
+    console.log(tickets)
     .catch(error => {
       res.render('homepage', {
         pageTitle: 'TCinemaB'
