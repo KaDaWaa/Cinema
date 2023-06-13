@@ -23,7 +23,7 @@
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 4;
-    font-size: 18px;
+    font-size: 16px;
     color:#1d1d48;
 }
 
@@ -34,7 +34,7 @@
     border-radius: 5px;
     border-width: 4px;
     height: 500px;
-    width: auto;
+    width: 350px;
 }
 
 .seats-container{

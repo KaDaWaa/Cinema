@@ -129,15 +129,21 @@
                     <div class="screen">
                         <img src="/pics/screenCinema.png" alt="screen" style="width: 600px;">
                     </div>
+                    <div style="display: flex; flex-wrap: wrap; margin-top: 30px;">
+                      <div style="margin-top: 0px; margin-left: 20px; width: 20px;">
+                          <% for(let i = 0; i< movie.chairAmount/12; i++) {%>
+                              <h6 style="color: white; padding: 6.5px;"><%=i+1%></h6>
+                          <% } %>
+                      </div>
                     <div class="seats"
-                        style="display: flex; flex-wrap: wrap;justify-content: center; align-items: center; width: 80%; margin-top: 50px; margin-left: 55px;">
-                        <% for(let i=0; i < movie.chairAmount ; i++) {
+                    style="display: flex; flex-wrap: wrap;justify-content: center; align-items: center; width: 80%; margin-left: 20px;">
+                    <% for(let i=0; i < movie.chairAmount ; i++) {
                             if(selectedChairs.includes(i.toString())){%>
                                 <img id="<%=i%>" src="/pics/SeatSelected.png"
                                     alt="grayChair(not Available)"
                                     style="height: 40px; width: 40px;">
                             <%}
-                            else if(movie.chairArray[i]==false){%>
+                            else if(!movie.chairArray[i]){%>
                                 <img id="<%=i%>" src="/pics/SeatAvailable.png"
                                     alt="grayChair(not Available)"
                                     style="height: 40px; width: 40px;">

@@ -4,9 +4,14 @@
     <div class="screen">
         <img src="/pics/screenCinema.png" alt="screen" style="width: 600px;">
     </div>
-    <div class="seats-container">
-        <div class="seats"
-            style="display: flex; flex-wrap: wrap;justify-content: center; align-items: center; width: 80%; margin-top: 50px; margin-left: 55px;">
+    <div style="display: flex; flex-wrap: wrap; margin-top: 30px;">
+        <div style="margin-top: 0px; margin-left: 20px; width: 20px;">
+            <% for(let i = 0; i< movie.chairAmount/12; i++) {%>
+                <h6 style="color: white; padding: 6.5px;"><%=i+1%></h6>
+            <% } %>
+        </div>
+      <div class="seats"
+      style="display: flex; flex-wrap: wrap;justify-content: center; align-items: center; width: 80%; margin-left: 20px;">
             <% for(let i=0; i < movie.chairAmount ; i++) { if(movie.chairArray[i]){%>
                 <button id="<%=i%>" onclick="change(this)" style="background: none; border: none; padding: 0;"><img
                         src="/pics/SeatUnavailable.png" id="image<%=i%>" alt="greenChair(Available)"
@@ -19,6 +24,7 @@
                     <% }} %>
         </div>
     </div>
+
 </div>
 <script>
     var test = '<%- JSON.parse(JSON.stringify(movie.chairArray)) %>';
@@ -48,4 +54,5 @@
         });
         return response.json();
     }
+
 </script>

@@ -70,7 +70,7 @@
 
 .movie-details h2 {
     margin-bottom: 10px;
-    font-size: 24px;
+    font-size: 20px;
     color: #1d1d49;
 }
 
@@ -85,7 +85,7 @@
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 4;
-    font-size: 18px;
+    font-size: 14px;
     color: #1d1d49;
 }
 

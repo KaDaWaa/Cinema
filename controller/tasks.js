@@ -51,12 +51,13 @@ router.post('/add_movie', async (req, res) => {
 
 router.post('/edit_movie/:id', async (req, res) => {
   const id = req.params.id;
-  const { movieName, movieImage, movieLength, movieAuthor, moviePrice, ageRestriction, genre, chairAmount } = req.body;
+  const { movieName, movieImage, movieLength, movieAuthor, moviePrice,movieDescription, ageRestriction, genre, chairAmount } = req.body;
   Movie.update({
     movieName: movieName,
     movieImage: movieImage,
     movieLength: movieLength,
     movieAuthor: movieAuthor,
+    movieDescription:movieDescription,
     moviePrice: moviePrice,
     ageRestriction: ageRestriction,
     genre: genre,
@@ -91,6 +92,5 @@ router.post('/edit_chairs/:id', async (req, res) => {
       res.redirect('/homepage')
     })
 });
-
 
 export default router;
