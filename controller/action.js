@@ -40,36 +40,54 @@ router.get('/dashboard', async (req, res) => {
   const password = req.query.password;
   if (username == process.env.ADMIN_USERNAME && password == process.env.ADMIN_PASSWORD) {
     Movie.findAll()
-    .then(movies=>{
-    res.render('dashboard', {
-      pageTitle: 'Dashboard',
-      movies:movies
-    })
-  })
-  .catch(error=>{
-         res.render('homepage',{
-           pageTitle:'TCinemaB',
-         })
-       })
-}
+      .then(movies => {
+        res.render('dashboard', {
+          pageTitle: 'Dashboard',
+          movies: movies
+        })
+      })
+      .catch(error => {
+        res.render('homepage', {
+          pageTitle: 'TCinemaB',
+        })
+      })
+  }
 })
-router.get('/movie/:id',async(req,res)=>{
-  const id=req.params.id;
+router.get('/movie/:id', async (req, res) => {
+  const id = req.params.id;
 
   Movie.findByPk(id)
-  .then(movie=>{
-    res.render('movie',{
-      pageTitle:movie.movieName,
-      movie:movie
+    .then(movie => {
+      res.render('movie', {
+        pageTitle: movie.movieName,
+        movie: movie
+      })
     })
-  })
-  .catch(error=>{
-    res.render('homepage',{
-      pageTitle:'TCinemaB'
+    .catch(error => {
+      res.render('homepage', {
+        pageTitle: 'TCinemaB'
+      })
     })
-  })
 })
 
+router.get('/movie/:id/checkout/:tickets', async (req, res) => {
+  const id = req.params.id;
+
+  Movie.findByPk(id)
+    .then(movie => {
+      res.render('checkout', {
+        pageTitle: "checkout for "+movie.movieName,
+        movie: movie,
+        tickets: req.params.tickets
+      })
+    })
+    console.log(tickets)
+    .catch(error => {
+      res.render('homepage', {
+        pageTitle: 'TCinemaB'
+      })
+    })
+})
 router.get('/edit_movie/:id', async (req, res) => {
   const id = req.params.id;
 

@@ -1,0 +1,54 @@
+<link rel="stylesheet" href="/movie.css">
+<h1>Cinema Seat Selection</h1>
+<div class="seats-container">
+    <div class="screen">
+        <img src="/pics/screenCinema.png" alt="screen" style="width: 600px;">
+    </div>
+    <div class="seats-container">
+        <div class="seats"
+            style="display: flex; flex-wrap: wrap;justify-content: center; align-items: center; width: 80%; margin-top: 50px; margin-left: 55px;">
+            <% for(let i=0; i < movie.chairAmount ; i++) { if(movie.chairArray[i]){%>
+                <button id="<%=i%>" onclick="change(this)" style="background: none; border: none; padding: 0;"><img
+                        src="/pics/SeatUnavailable.png" id="image<%=i%>" alt="greenChair(Available)"
+                        style="height: 40px; width: 40px;"></button>
+                <% }else{ %>
+                    <button id="<%=i%>" onclick="change(this)" style="background: none; border: none; padding: 0;">
+                        <img class="image" id="image<%=i%>" src="/pics/SeatAvailable.png" alt="Button Image"
+                            style="height: 40px; width: 40px;">
+                    </button>
+                    <% }} %>
+        </div>
+    </div>
+</div>
+<button type="submit" class="btn btn-primary" style="width:100%; margin-left: 4%; margin-top: 20%;"
+    onclick="sendData()">Save
+    Changes</button>
+<script>
+    var test = '<%- JSON.parse(JSON.stringify(movie.chairArray)) %>';
+    test = test.split(",");
+    let editedChairs = [];
+    function change(button) {
+        if (document.getElementById("image" + button.id).src.includes("/pics/SeatSelected.png")) {
+            if (test[button.id] == "true") {
+                document.getElementById("image" + button.id).src = "/pics/SeatUnavailable.png";
+            }
+            else
+                document.getElementById("image" + button.id).src = "/pics/SeatAvailable.png";
+            editedChairs.splice(editedChairs.indexOf(button.id), 1);
+        }
+        else {
+            document.getElementById("image" + button.id).src = "/pics/SeatSelected.png";
+            editedChairs.push(button.id);
+        }
+    }
+    async function sendData() {
+        const response = await fetch('/functions/edit_chairs/' + '<%- JSON.stringify(movie.id)%>', {
+            method: "POST",
+            body: JSON.stringify(editedChairs),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+        return response.json();
+    }
+</script>

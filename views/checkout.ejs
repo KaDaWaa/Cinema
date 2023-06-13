@@ -31,7 +31,7 @@
                         </div>
                     </div>
                     <div class="col-lg-8">
-                        <div class="movie-details" style="margin: 10%;">
+                        <div class="movie-details">
                             <h1>
                                 <%= movie.movieName %>
                             </h1>
@@ -40,44 +40,36 @@
                                     <%=movie.movieDescription%>
                             </div>
                         </div>
-                        <% let selectedChairAmount=0; %>
                         <% let chairArray=movie.chairArray %>
+                            <% console.log(chairArray) %>
+                                <% console.log(chairArray[3]) %>
+
                                     <div class="tickets-purchase">
                                         <div class="seats-container">
-                                            <div class="screen" style="height: 100px">
+                                            <div class="screen">
                                                 <img src="/pics/screenCinema.png" alt="screen" style="width: 600px;">
                                             </div>
-                                            <div style="display: flex; flex-wrap: wrap;">
-                                                <div style="margin-top: 0px; margin-left: 20px; width: 20px;">
-                                                    <% for(let i = 0; i< movie.chairAmount/12; i++) {%>
-                                                        <h6 style="color: white; padding: 6.5px;"><%=i+1%></h6>
-                                                    <% } %>
-                                                </div>
-                                                <% let tickets = 0%>
-                                                <div class="seats"
-                                                    style="display: flex; flex-wrap: wrap;justify-content: center; align-items: center; width: 80%; margin-left: 20px;">
-                                                    <% let line = 0 %>
-                                                    <% for(let i=0; i < movie.chairAmount ; i++) {
-                                                        if(movie.chairArray[i]==false){%>
-                                                        <button onclick="SelectSeat(this.id, '<%=movie.moviePrice%>')" id="<%=i%>"
-                                                            style="background: none; border: none; padding: 0;"><img
-                                                                id="image<%=i%>" src="/pics/SeatAvailable.png"
-                                                                alt="greenChair(Available)"
-                                                                style="height: 40px; width: 40px;"></button>
-                                                                <%selectedChairAmount++;%>
-                                                        <% }else{ %>
-                                                            <img id="<%=i%>" src="/pics/SeatUnavailable.png"
-                                                                alt="grayChair(not Available)"
-                                                                style="height: 40px; width: 40px;">
-                                                            <% }} %>
-                                                </div>
+                                            <div class="seats"
+                                                style="display: flex; flex-wrap: wrap;justify-content: center; align-items: center; width: 80%; margin-top: 50px; margin-left: 55px;">
+                                                <% for(let i=0; i < movie.chairAmount ; i++) {
+                                                    if(movie.chairArray[i]==false){%>
+                                                    <button onclick="SelectSeat(this.id)" id="<%=i%>"
+                                                        style="background: none; border: none; padding: 0;"><img
+                                                            id="image<%=i%>" src="/pics/SeatAvailable.png"
+                                                            alt="greenChair(Available)"
+                                                            style="height: 40px; width: 40px;"></button>
+                                                    <% }else{ %>
+                                                        <img id="<%=i%>" src="/pics/SeatUnavailable.png"
+                                                            alt="grayChair(not Available)"
+                                                            style="height: 40px; width: 40px;">
+                                                        <% }} %>
                                             </div>
                                         </div>
-                                        <h4 style="margin-left: 220px;">Total price: <span id = "totalPrice"></span>$</h6>
+                                        <h4 style="margin-left: 220px;">price:15$(per ticket)</h6>
                                             <div class="purchase-btn">
                                                 <span style="font-size: larger; margin-left:25%;">Purchase</span><br>
                                                 <span style="font-size: 0.7em; margin-left:25%;">
-                                                    <%=selectedChairAmount%> Chairs selected
+                                                    <%#selectedChairAmount%> Chairs selected
                                                 </span>
                                             </div>
                                     </div>
@@ -93,25 +85,14 @@
                 crossorigin="anonymous">
                 </script>
             <script>
-                tickets = 0;
-                let totalPrice = 0
-                document.getElementById("totalPrice").innerHTML = totalPrice;
-
-                function SelectSeat(id,price) {
-                    let tp = document.getElementById("totalPrice");
+                function SelectSeat(id) {
                     let seat = document.getElementById("image" + id);
+                    console.log(seat.src)
                     if (seat.getAttribute('src') === '/pics/SeatAvailable.png')
-                    {
                         seat.src = '/pics/SeatSelected.png';
-                        tickets++;
-                    }
                     else
-                    {
                         seat.src = '/pics/SeatAvailable.png';
-                        tickets--;
-                    }
-                    totalPrice = tickets * price;
-                    tp.innerHTML = totalPrice;
+
                 }
             </script>
     </body>

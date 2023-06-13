@@ -4,34 +4,50 @@
         <%- include('./components/navigation')%>
             <h3>Edit <%=movie.movieName %>
             </h3>
-            <form id="edit_movie_form" method="post" action="/functions/edit_movie/<%=movie.id%>">
-                <label class="form-label">Movie Name</label>
-                <input type="text" name="movieName" class="form-control" value="<%=movie.movieName%>">
-                <label class="form-label">Movie Image</label>
-                <input type="text" name="movieImage" class="form-control" value="<%=movie.movieImage%>">
-                <label class="form-label">Movie Length</label>
-                <input type="text" name="movieLength" class="form-control" value="<%=movie.movieLength%>">
-                <label class="form-label">Movie Author</label>
-                <input type="text" name="movieAuthor" class="form-control" value="<%=movie.movieAuthor%>">
-                <label class="form-label">Age Restriction</label>
-                <div style="margin-top: 10px; margin-bottom:10px;" class="btn-group" role="group"
-                    aria-label="Basic radio toggle button group">
-                    <input type="radio" class="btn-check" name="ageR" value="true" id="btnradio1" autocomplete="off"
-                        <%if(movie.ageRestriction){%>checked<%}%>>
-                        <label class="btn btn-outline-primary" for="btnradio1">True</label>
-                        <input type="radio" class="btn-check" name="ageR" value="false" id="btnradio2"
-                            autocomplete="off" <%if(!movie.ageRestriction){%>checked<%}%>>
-                            <label class="btn btn-outline-primary" for="btnradio2">False</label>
-                </div><br>
-                <input type="text" name="ageRestriction" value="<%=movie.ageRestriction %>" class="form-control"
-                    id="ageResInput" hidden="">
-                <label class="form-label">Genre</label>
-                <input type="text" name="genre" class="form-control" value="<%=movie.genre%>">
-                <button form="edit_movie_form" type="submit" class="btn btn-primary"
-                    style="width:100%; margin-top:12px;">Save
-                    Changes</button>
+            <div class="row">
+                <div class="col-lg-6">
+                    <form id="edit_movie_form" method="post" action="/functions/edit_movie/<%=movie.id%>">
+                        <label class="form-label">Movie Name</label>
+                        <input type="text" name="movieName" class="form-control" value="<%=movie.movieName%>">
+                        <label class="form-label">Movie Image</label>
+                        <input type="text" name="movieImage" class="form-control" value="<%=movie.movieImage%>">
+                        <label class="form-label">Movie Length</label>
+                        <input type="text" name="movieLength" class="form-control" value="<%=movie.movieLength%>">
+                        <label class="form-label">Description</label>
+                        <input type="text" name="movieDescription" class="form-control"
+                            value="<%=movie.movieDescription%>">
+                        <label class="form-label">Movie Author</label>
+                        <input type="text" name="movieAuthor" class="form-control" value="<%=movie.movieAuthor%>">
+                        <label class="form-label">Movie Price</label>
+                        <input type="text" name="moviePrice" class="form-control" value="<%=movie.moviePrice%>">
+                        <label class="form-label">Age Restriction</label>
+                        <div style="margin-top: 10px; margin-bottom:10px;" class="btn-group" role="group"
+                            aria-label="Basic radio toggle button group">
+                            <input type="radio" class="btn-check" name="ageR" value="true" id="btnradio1"
+                                autocomplete="off" <%if(movie.ageRestriction){%>checked<%}%>>
+                                <label class="btn btn-outline-primary" for="btnradio1">True</label>
+                                <input type="radio" class="btn-check" name="ageR" value="false" id="btnradio2"
+                                    autocomplete="off" <%if(!movie.ageRestriction){%>checked<%}%>>
+                                    <label class="btn btn-outline-primary" for="btnradio2">False</label>
+                        </div><br>
+                        <input type="text" name="ageRestriction" value="<%=movie.ageRestriction %>" class="form-control"
+                            id="ageResInput" <% if(!movie.ageRestriction){%>hidden=""<%}%>>
+                            <label class="form-label">Genre</label>
+                            <input type="text" name="genre" class="form-control" value="<%=movie.genre%>">
+                            <label class="form-label">Amount of Chairs</label>
+                            <input type="text" name="chairAmount" class="form-control" value="<%=movie.chairAmount%>">
+                            <button form="edit_movie_form" type="submit" class="btn btn-primary"
+                                style="width:100%; margin-top:12px;">Save
+                                Changes</button>
 
-            </form>
+                    </form>
+                </div>
+                <div class="col-lg-6" style="width: 30%; margin-left: 200px">
+                    <%- include('./components/seats') %>
+                </div>
+
+
+            </div>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
                 integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
                 crossorigin="anonymous"></script>
